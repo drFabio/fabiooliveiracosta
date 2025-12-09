@@ -1,0 +1,136 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="About - Portfolio"
+	description="Learn more about my background, skills, and experience"
+>
+	<article>
+		<h1
+			class="text-4xl sm:text-5xl font-bold mb-8 text-gray-900 dark:text-white"
+		>
+			About Me
+		</h1>
+
+		<div class="prose prose-lg dark:prose-invert max-w-none mb-12">
+			<p
+				class="text-lg text-gray-700 dark:text-gray-300 leading-loose mb-6"
+			>
+				I am polyglot developer with {new Date().getFullYear() - 2004} years
+				of experience, I've been all over the place but TypeScript and React
+				has been the bulk of my latest experiences lately.
+			</p>
+			<p class="text-lg text-gray-700 dark:text-gray-300 leading-loose">
+				I started working when I was 15 years old with a PHP book and a
+				Technical Degree, eventually I learned a lot by doing. I was
+				able to fit a Baschelor on computer science and one of Science
+				and technology while still working. I had a broad career seeing
+				technologies bloom and fade away, and adapting myself at every
+				step.
+			</p>
+			<p class="text-lg text-gray-700 dark:text-gray-300 leading-loose">
+				Currently I value testing, a tight feedback loop, and
+				experimental development. Developers should be able to test
+				their hypothesis often, safely and quickly. A fast and safe Dev
+				is a happy dev.
+			</p>
+			<p class="text-lg text-gray-700 dark:text-gray-300 leading-loose">
+				On a personal level I enjoy close-up Magic, Bouldering, Board
+				games and nice beers.
+			</p>
+		</div>
+
+		<section class="mb-12">
+			<h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+				Current Stack
+			</h2>
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+				<div
+					class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700"
+				>
+					<h3
+						class="font-semibold mb-2 text-gray-900 dark:text-white"
+					>
+						Frontend
+					</h3>
+					<ul
+						class="text-sm text-gray-600 dark:text-gray-400 space-y-1"
+					>
+						<li>React</li>
+						<li>CSS</li>
+						<li>Cypress</li>
+						<li>Storybook</li>
+					</ul>
+				</div>
+				<div
+					class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700"
+				>
+					<h3
+						class="font-semibold mb-2 text-gray-900 dark:text-white"
+					>
+						Backend
+					</h3>
+					<ul
+						class="text-sm text-gray-600 dark:text-gray-400 space-y-1"
+					>
+						<li>Next.js</li>
+						<li>NestJs</li>
+						<li>PostgreSQL</li>
+						<li>Graphql</li>
+					</ul>
+				</div>
+				<div
+					class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700"
+				>
+					<h3
+						class="font-semibold mb-2 text-gray-900 dark:text-white"
+					>
+						Infrastructure
+					</h3>
+					<ul
+						class="text-sm text-gray-600 dark:text-gray-400 space-y-1"
+					>
+						<li>CDK</li>
+						<li>Docker</li>
+						<li>AWS</li>
+						<li>Testing</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+				Current position
+			</h2>
+			<div class="space-y-6">
+				<div class="border-l-4 border-gray-900 dark:border-white pl-6">
+					<h3
+						class="text-xl font-semibold mb-2 text-gray-900 dark:text-white"
+					>
+						Staff Engineer
+					</h3>
+					<p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+						Taxdoo • January 2025 - Present
+					</p>
+					<p class="text-gray-700 dark:text-gray-300">
+						Leading development of modern web applications using
+						React and TypeScript. Collaborating with
+						cross-functional teams to deliver high-quality software
+						solutions.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<div class="mt-12">
+			<a
+				href="/cv"
+				class="inline-block px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+			>
+				View Full CV
+			</a>
+		</div>
+	</article>
+</BaseLayout>

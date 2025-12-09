@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { posts } from "../../content/posts";
+
+export async function getStaticPaths() {
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+---
+
+<BaseLayout title={`${post.title} - Portfolio`} description={post.description}>
+	<article class="max-w-3xl mx-auto">
+		<a
+			href="/"
+			class="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 mb-8 transition-colors"
+		>
+			<svg
+				class="w-4 h-4"
+				fill="none"
+				stroke="currentColor"
+				viewBox="0 0 24 24"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M15 19l-7-7 7-7"></path>
+			</svg>
+			Back to Home
+		</a>
+
+		<header class="mb-8">
+			<time class="text-sm text-gray-500 dark:text-gray-400 mb-4 block">
+				{
+					new Date(post.date).toLocaleDateString("en-US", {
+						year: "numeric",
+						month: "long",
+						day: "numeric",
+					})
+				}
+			</time>
+			<h1
+				class="text-4xl sm:text-5xl font-bold mb-4 text-gray-900 dark:text-white"
+			>
+				{post.title}
+			</h1>
+		</header>
+
+		<img
+			src={post.imageUrl}
+			alt={post.title}
+			class="w-full h-64 sm:h-96 object-cover rounded-lg mb-8"
+		/>
+
+		<div class="prose prose-lg dark:prose-invert max-w-none">
+			<p
+				class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6"
+			>
+				{post.description}
+			</p>
+			<p
+				class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6"
+			>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+				enim ad minim veniam, quis nostrud exercitation ullamco laboris
+				nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+				in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+				nulla pariatur.
+			</p>
+			<p
+				class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6"
+			>
+				Excepteur sint occaecat cupidatat non proident, sunt in culpa
+				qui officia deserunt mollit anim id est laborum. Sed ut
+				perspiciatis unde omnis iste natus error sit voluptatem
+				accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+				quae ab illo inventore veritatis et quasi architecto beatae
+				vitae dicta sunt explicabo.
+			</p>
+			<h2
+				class="text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-white"
+			>
+				Conclusion
+			</h2>
+			<p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+				Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+				aut fugit, sed quia consequuntur magni dolores eos qui ratione
+				voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
+				ipsum quia dolor sit amet, consectetur, adipisci velit.
+			</p>
+		</div>
+	</article>
+</BaseLayout>

@@ -1,16 +1,78 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { posts } from "../content/posts";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Home - Portfolio" description="Developer Portfolio - Home">
+	<!-- Hero Section -->
+	<section class="mb-16 sm:mb-24">
+		<div class="text-center">
+			<h1
+				class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-gray-900 dark:text-white"
+			>
+				Developer Portfolio
+			</h1>
+			<p
+				class="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto"
+			>
+				Building modern web applications with passion and precision
+			</p>
+			<div class="flex flex-col sm:flex-row gap-4 justify-center">
+				<a
+					href="/cv"
+					class="inline-block px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+				>
+					View CV
+				</a>
+				<a
+					href="/about"
+					class="inline-block px-6 py-3 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+				>
+					Learn More
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Posts Section -->
+	<section>
+		<h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
+			Recent Posts
+		</h2>
+		<div class="grid gap-8 sm:gap-10">
+			{
+				posts.map((post) => (
+					<article class="group">
+						<a href={`/posts/${post.slug}`} class="block">
+							<div class="overflow-hidden rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+								<img
+									src={post.imageUrl}
+									alt={post.title}
+									class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+								/>
+								<div class="p-6">
+									<time class="text-sm text-gray-500 dark:text-gray-400 mb-2 block">
+										{new Date(post.date).toLocaleDateString(
+											"en-US",
+											{
+												year: "numeric",
+												month: "long",
+												day: "numeric",
+											},
+										)}
+									</time>
+									<h3 class="text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+										{post.title}
+									</h3>
+									<p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+										{post.description}
+									</p>
+								</div>
+							</div>
+						</a>
+					</article>
+				))
+			}
+		</div>
+	</section>
+</BaseLayout>

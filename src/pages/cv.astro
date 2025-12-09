@@ -1,0 +1,276 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="CV - Portfolio" description="View and download my CV">
+	<article>
+		<div
+			class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8"
+		>
+			<h1
+				class="text-4xl sm:text-5xl font-bold mb-4 sm:mb-0 text-gray-900 dark:text-white"
+			>
+				Curriculum Vitae
+			</h1>
+			<a
+				href="/cv.pdf"
+				download
+				class="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+			>
+				<svg
+					class="w-5 h-5"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+					></path>
+				</svg>
+				Download PDF
+			</a>
+		</div>
+
+		<div class="space-y-12">
+			<!-- Experience -->
+			<section>
+				<h2
+					class="text-2xl font-bold mb-4 text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
+				>
+					Experience
+				</h2>
+				<div class="space-y-6">
+					<div
+						class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+					>
+						<div
+							class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2"
+						>
+							<h3
+								class="text-xl font-semibold text-gray-900 dark:text-white"
+							>
+								Senior Developer
+							</h3>
+							<span
+								class="text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-0"
+								>2022 - Present</span
+							>
+						</div>
+						<p class="text-gray-600 dark:text-gray-400 mb-3">
+							Company Name
+						</p>
+						<ul
+							class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
+						>
+							<li>
+								Led development of modern web applications using
+								React and TypeScript
+							</li>
+							<li>
+								Collaborated with cross-functional teams to
+								deliver high-quality software solutions
+							</li>
+							<li>
+								Mentored junior developers and conducted code
+								reviews
+							</li>
+							<li>
+								Improved application performance and user
+								experience
+							</li>
+						</ul>
+					</div>
+
+					<div
+						class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+					>
+						<div
+							class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2"
+						>
+							<h3
+								class="text-xl font-semibold text-gray-900 dark:text-white"
+							>
+								Full Stack Developer
+							</h3>
+							<span
+								class="text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-0"
+								>2020 - 2022</span
+							>
+						</div>
+						<p class="text-gray-600 dark:text-gray-400 mb-3">
+							Previous Company
+						</p>
+						<ul
+							class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
+						>
+							<li>
+								Developed and maintained multiple web
+								applications
+							</li>
+							<li>
+								Worked with both frontend and backend
+								technologies
+							</li>
+							<li>
+								Implemented RESTful APIs and database solutions
+							</li>
+							<li>Participated in agile development processes</li>
+						</ul>
+					</div>
+
+					<div
+						class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+					>
+						<div
+							class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2"
+						>
+							<h3
+								class="text-xl font-semibold text-gray-900 dark:text-white"
+							>
+								Junior Developer
+							</h3>
+							<span
+								class="text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-0"
+								>2018 - 2020</span
+							>
+						</div>
+						<p class="text-gray-600 dark:text-gray-400 mb-3">
+							Early Company
+						</p>
+						<ul
+							class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
+						>
+							<li>
+								Built responsive web interfaces using HTML, CSS,
+								and JavaScript
+							</li>
+							<li>
+								Assisted in backend development and database
+								management
+							</li>
+							<li>
+								Learned best practices and modern development
+								workflows
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- Education -->
+			<section>
+				<h2
+					class="text-2xl font-bold mb-4 text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
+				>
+					Education
+				</h2>
+				<div
+					class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+				>
+					<div
+						class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2"
+					>
+						<h3
+							class="text-xl font-semibold text-gray-900 dark:text-white"
+						>
+							Bachelor of Science in Computer Science
+						</h3>
+						<span
+							class="text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-0"
+							>2014 - 2018</span
+						>
+					</div>
+					<p class="text-gray-600 dark:text-gray-400">
+						University Name
+					</p>
+				</div>
+			</section>
+
+			<!-- Skills -->
+			<section>
+				<h2
+					class="text-2xl font-bold mb-4 text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
+				>
+					Skills
+				</h2>
+				<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+					<div>
+						<h3
+							class="font-semibold mb-3 text-gray-900 dark:text-white"
+						>
+							Frontend Technologies
+						</h3>
+						<ul class="space-y-2 text-gray-700 dark:text-gray-300">
+							<li>React, TypeScript, JavaScript</li>
+							<li>Astro, Next.js, Vue.js</li>
+							<li>Tailwind CSS, CSS3, HTML5</li>
+							<li>Responsive Design</li>
+						</ul>
+					</div>
+					<div>
+						<h3
+							class="font-semibold mb-3 text-gray-900 dark:text-white"
+						>
+							Backend & Tools
+						</h3>
+						<ul class="space-y-2 text-gray-700 dark:text-gray-300">
+							<li>Node.js, Python, Express</li>
+							<li>PostgreSQL, MongoDB</li>
+							<li>Git, Docker, CI/CD</li>
+							<li>Testing (Jest, Cypress)</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- Projects -->
+			<section>
+				<h2
+					class="text-2xl font-bold mb-4 text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
+				>
+					Notable Projects
+				</h2>
+				<div class="space-y-4">
+					<div
+						class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+					>
+						<h3
+							class="text-xl font-semibold mb-2 text-gray-900 dark:text-white"
+						>
+							E-Commerce Platform
+						</h3>
+						<p class="text-gray-700 dark:text-gray-300 mb-2">
+							Built a full-stack e-commerce platform with React,
+							Node.js, and PostgreSQL. Features include user
+							authentication, payment processing, and admin
+							dashboard.
+						</p>
+						<p class="text-sm text-gray-500 dark:text-gray-400">
+							Technologies: React, Node.js, PostgreSQL, Stripe API
+						</p>
+					</div>
+					<div
+						class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+					>
+						<h3
+							class="text-xl font-semibold mb-2 text-gray-900 dark:text-white"
+						>
+							Real-time Chat Application
+						</h3>
+						<p class="text-gray-700 dark:text-gray-300 mb-2">
+							Developed a real-time chat application using
+							WebSockets and React. Supports multiple rooms, file
+							sharing, and message history.
+						</p>
+						<p class="text-sm text-gray-500 dark:text-gray-400">
+							Technologies: React, Socket.io, Express, MongoDB
+						</p>
+					</div>
+				</div>
+			</section>
+		</div>
+	</article>
+</BaseLayout>
