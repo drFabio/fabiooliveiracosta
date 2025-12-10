@@ -10,7 +10,7 @@ const { title, description = "Developer Portfolio" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth" data-theme="light">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -18,12 +18,32 @@ const { title, description = "Developer Portfolio" } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+		<script is:inline>
+			// Apply theme as early as possible to avoid flashes
+			(function () {
+				try {
+					const stored = localStorage.getItem("theme");
+					const prefersDark = window.matchMedia(
+						"(prefers-color-scheme: dark)",
+					).matches;
+					const shouldBeDark =
+						stored === "dark" || (!stored && prefersDark);
+
+					if (shouldBeDark) {
+						document.documentElement.classList.add("dark");
+					} else {
+						document.documentElement.classList.remove("dark");
+					}
+				} catch (e) {
+					// Fallback if localStorage is not available
+					console.warn("Could not set initial theme:", e);
+				}
+			})();
+		</script>
 	</head>
-	<body
-		class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200"
-	>
+	<body class="transition-colors duration-200">
 		<header
-			class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800"
+			class="sticky top-0 z-50 theme-header backdrop-blur-sm border-b"
 		>
 			<nav class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="flex items-center justify-between h-16">
@@ -54,7 +74,7 @@ const { title, description = "Developer Portfolio" } = Astro.props;
 						</a>
 						<button
 							id="theme-toggle"
-							class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+							class="theme-toggle inline-flex items-center justify-center"
 							aria-label="Toggle dark mode"
 						>
 							<svg
@@ -125,28 +145,6 @@ const { title, description = "Developer Portfolio" } = Astro.props;
 			</div>
 		</footer>
 
-		<script is:inline>
-			// Apply theme immediately to prevent flash of wrong theme
-			(function () {
-				try {
-					const stored = localStorage.getItem("theme");
-					const prefersDark = window.matchMedia(
-						"(prefers-color-scheme: dark)",
-					).matches;
-					const shouldBeDark =
-						stored === "dark" || (!stored && prefersDark);
-
-					if (shouldBeDark) {
-						document.documentElement.classList.add("dark");
-					} else {
-						document.documentElement.classList.remove("dark");
-					}
-				} catch (e) {
-					// Fallback if localStorage is not available
-					console.warn("Could not set initial theme:", e);
-				}
-			})();
-		</script>
 		<script>
 			// Theme toggle functionality
 			document.addEventListener("DOMContentLoaded", function () {
@@ -172,7 +170,8 @@ const { title, description = "Developer Portfolio" } = Astro.props;
 				}
 
 				// Apply theme
-				function setTheme(theme) {
+				/** @param {"light" | "dark"} theme */
+				function setTheme(theme: "light" | "dark") {
 					if (theme === "dark") {
 						html.classList.add("dark");
 					} else {
