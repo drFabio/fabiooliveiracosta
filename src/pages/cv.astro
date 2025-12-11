@@ -2,18 +2,27 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="CV - Portfolio" description="View and download my CV">
-	<article>
-		<div
-			class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8"
+<BaseLayout
+	title="CV - Fabio Oliveira Costa"
+	description="Polyglot Staff Engineer & Tech Lead with 21+ years of experience."
+>
+	<article class="space-y-10">
+		<!-- Header -->
+		<header
+			class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-4"
 		>
-			<h1
-				class="text-4xl sm:text-5xl font-bold mb-4 sm:mb-0 text-gray-900 dark:text-white"
-			>
-				Curriculum Vitae
-			</h1>
+			<div>
+				<h1
+					class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white"
+				>
+					Fabio Oliveira Costa
+				</h1>
+				<p class="mt-2 text-gray-700 dark:text-gray-300">
+					Staff Engineer · Tech Lead · Polyglot Developer
+				</p>
+			</div>
 			<a
-				href="/cv.pdf"
+				href="/FabioOliveiraCostaCV.pdf"
 				download
 				class="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
 			>
@@ -32,245 +41,543 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 				</svg>
 				Download PDF
 			</a>
-		</div>
+		</header>
 
-		<div class="space-y-12">
-			<!-- Experience -->
-			<section>
-				<h2
-					class="text-2xl font-bold mb-4 text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
-				>
-					Experience
-				</h2>
-				<div class="space-y-6">
-					<div
-						class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
-					>
-						<div
-							class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2"
-						>
-							<h3
-								class="text-xl font-semibold text-gray-900 dark:text-white"
-							>
-								Senior Developer
-							</h3>
-							<span
-								class="text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-0"
-								>2022 - Present</span
-							>
-						</div>
-						<p class="text-gray-600 dark:text-gray-400 mb-3">
-							Company Name
-						</p>
-						<ul
-							class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
-						>
-							<li>
-								Led development of modern web applications using
-								React and TypeScript
-							</li>
-							<li>
-								Collaborated with cross-functional teams to
-								deliver high-quality software solutions
-							</li>
-							<li>
-								Mentored junior developers and conducted code
-								reviews
-							</li>
-							<li>
-								Improved application performance and user
-								experience
-							</li>
-						</ul>
-					</div>
+		<!-- About -->
+		<section class="space-y-3">
+			<h2
+				class="text-2xl font-bold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
+			>
+				About me
+			</h2>
+			<p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+				I am a polyglot developer with over 21 years of experience. My
+				main stack is JavaScript-based with TypeScript, React, AWS, CDK,
+				Cypress, and Jest, but I have also worked professionally with
+				PHP, Python, and Java. I see languages and frameworks as tools
+				rather than ends in themselves.
+			</p>
+			<p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+				I have been working as a Tech Lead since 2023 and have held
+				lead-like responsibilities for much longer. Overall, I see
+				myself as a
+				<strong class="font-semibold">force multiplier</strong> who helps
+				teams move faster and safer. I hope we can build great things together.
+			</p>
+		</section>
 
-					<div
-						class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
-					>
-						<div
-							class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2"
-						>
-							<h3
-								class="text-xl font-semibold text-gray-900 dark:text-white"
-							>
-								Full Stack Developer
-							</h3>
-							<span
-								class="text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-0"
-								>2020 - 2022</span
-							>
-						</div>
-						<p class="text-gray-600 dark:text-gray-400 mb-3">
-							Previous Company
-						</p>
-						<ul
-							class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
-						>
-							<li>
-								Developed and maintained multiple web
-								applications
-							</li>
-							<li>
-								Worked with both frontend and backend
-								technologies
-							</li>
-							<li>
-								Implemented RESTful APIs and database solutions
-							</li>
-							<li>Participated in agile development processes</li>
-						</ul>
-					</div>
+		<!-- Professional Experience -->
+		<section class="space-y-6">
+			<h2
+				class="text-2xl font-bold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
+			>
+				Professional Experience
+			</h2>
 
-					<div
-						class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
-					>
-						<div
-							class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2"
-						>
-							<h3
-								class="text-xl font-semibold text-gray-900 dark:text-white"
-							>
-								Junior Developer
-							</h3>
-							<span
-								class="text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-0"
-								>2018 - 2020</span
-							>
-						</div>
-						<p class="text-gray-600 dark:text-gray-400 mb-3">
-							Early Company
-						</p>
-						<ul
-							class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
-						>
-							<li>
-								Built responsive web interfaces using HTML, CSS,
-								and JavaScript
-							</li>
-							<li>
-								Assisted in backend development and database
-								management
-							</li>
-							<li>
-								Learned best practices and modern development
-								workflows
-							</li>
-						</ul>
-					</div>
-				</div>
-			</section>
-
-			<!-- Education -->
-			<section>
-				<h2
-					class="text-2xl font-bold mb-4 text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
-				>
-					Education
-				</h2>
+			<!-- Taxdoo -->
+			<div
+				class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+			>
 				<div
-					class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+					class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1"
 				>
-					<div
-						class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2"
-					>
+					<div>
 						<h3
 							class="text-xl font-semibold text-gray-900 dark:text-white"
 						>
-							Bachelor of Science in Computer Science
+							Staff Engineer
 						</h3>
-						<span
-							class="text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-0"
-							>2014 - 2018</span
-						>
+						<p class="text-gray-600 dark:text-gray-400">
+							Taxdoo · Hamburg, Germany · Remote
+						</p>
 					</div>
-					<p class="text-gray-600 dark:text-gray-400">
-						University Name
+					<p class="text-sm text-gray-500 dark:text-gray-400">
+						January 2025 – Present
 					</p>
 				</div>
-			</section>
-
-			<!-- Skills -->
-			<section>
-				<h2
-					class="text-2xl font-bold mb-4 text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
+				<ul
+					class="mt-3 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
 				>
-					Skills
-				</h2>
-				<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+					<li>
+						Created a series of AI workflows for safe refactoring
+						using Claude.
+					</li>
+					<li>
+						Worked on a tax-based system spanning PHP, Python, Node,
+						Go, and Java, guiding migration towards a single
+						TypeScript and React codebase.
+					</li>
+					<li>
+						Aggressively optimized GitLab pipelines with caching,
+						conditional testing, merge trains, and parallelization,
+						reducing optimal-path run time from ~20 minutes to ~2
+						minutes.
+					</li>
+					<li>
+						Managed AWS CDK infrastructure for both monolith and
+						microservice architectures.
+					</li>
+					<li>
+						Defined a QA testing approach for safe and fast
+						development using Jest, Cypress, Storybook, and
+						Chromatic.
+					</li>
+					<li>
+						Mentored a senior engineer, helping them grow on their
+						own terms, including building a Supabase-powered
+						internal tool and migrating a legacy Java project.
+					</li>
+				</ul>
+			</div>
+
+			<!-- Zolar -->
+			<div
+				class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+			>
+				<div
+					class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1"
+				>
 					<div>
 						<h3
-							class="font-semibold mb-3 text-gray-900 dark:text-white"
+							class="text-xl font-semibold text-gray-900 dark:text-white"
 						>
-							Frontend Technologies
+							Tech Lead
 						</h3>
-						<ul class="space-y-2 text-gray-700 dark:text-gray-300">
-							<li>React, TypeScript, JavaScript</li>
-							<li>Astro, Next.js, Vue.js</li>
-							<li>Tailwind CSS, CSS3, HTML5</li>
-							<li>Responsive Design</li>
-						</ul>
+						<p class="text-gray-600 dark:text-gray-400">
+							Zolar (Solar energy) · Berlin, Germany · Remote
+						</p>
 					</div>
+					<p class="text-sm text-gray-500 dark:text-gray-400">
+						February 2023 – January 2025
+					</p>
+				</div>
+				<ul
+					class="mt-3 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
+				>
+					<li>
+						Had 4 direct reports within a team of 6 and collaborated
+						with over 50 stakeholders across 4 domains.
+					</li>
+					<li>
+						Built systems using TypeScript, NestJS, React, CSS,
+						Node.js, AWS, CDK, and Cypress.
+					</li>
+					<li>
+						Designed end-to-end supply chain and warehouse
+						management systems, enabling ~95% of orders to be
+						processed without human intervention.
+					</li>
+					<li>
+						Developed Salesforce and marketing integrations for
+						seamless client communication and GDPR workflows,
+						enabling tool migrations that reduced monthly
+						expenditure.
+					</li>
+					<li>
+						Designed integrations to connect off-the-shelf systems
+						with third-party vendors using more than 9 protocols and
+						communication styles.
+					</li>
+					<li>
+						Improved deployment pipelines company-wide by roughly
+						90%.
+					</li>
+					<li>
+						Implemented automated interview steps to quickly veto
+						candidates, reducing the time to reject from ~2 weeks to
+						~1 day.
+					</li>
+				</ul>
+			</div>
+
+			<!-- VISI/ONE -->
+			<div
+				class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+			>
+				<div
+					class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1"
+				>
 					<div>
 						<h3
-							class="font-semibold mb-3 text-gray-900 dark:text-white"
+							class="text-xl font-semibold text-gray-900 dark:text-white"
 						>
-							Backend & Tools
+							Senior Full-stack Engineer
 						</h3>
-						<ul class="space-y-2 text-gray-700 dark:text-gray-300">
-							<li>Node.js, Python, Express</li>
-							<li>PostgreSQL, MongoDB</li>
-							<li>Git, Docker, CI/CD</li>
-							<li>Testing (Jest, Cypress)</li>
-						</ul>
+						<p class="text-gray-600 dark:text-gray-400">
+							VISI/ONE (Automotive IoT) · Berlin, Germany · Remote
+						</p>
 					</div>
+					<p class="text-sm text-gray-500 dark:text-gray-400">
+						September 2022 – February 2023
+					</p>
 				</div>
-			</section>
-
-			<!-- Projects -->
-			<section>
-				<h2
-					class="text-2xl font-bold mb-4 text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
+				<ul
+					class="mt-3 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
 				>
-					Notable Projects
-				</h2>
-				<div class="space-y-4">
-					<div
-						class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
-					>
+					<li>
+						Contributed to a very old, legacy JavaScript and
+						PostgreSQL codebase.
+					</li>
+					<li>
+						Played a key role in designing and executing the
+						modernization strategy for the reformed codebase.
+					</li>
+				</ul>
+			</div>
+
+			<!-- heyday -->
+			<div
+				class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+			>
+				<div
+					class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1"
+				>
+					<div>
 						<h3
-							class="text-xl font-semibold mb-2 text-gray-900 dark:text-white"
+							class="text-xl font-semibold text-gray-900 dark:text-white"
 						>
-							E-Commerce Platform
+							Senior Full-stack Engineer
 						</h3>
-						<p class="text-gray-700 dark:text-gray-300 mb-2">
-							Built a full-stack e-commerce platform with React,
-							Node.js, and PostgreSQL. Features include user
-							authentication, payment processing, and admin
-							dashboard.
-						</p>
-						<p class="text-sm text-gray-500 dark:text-gray-400">
-							Technologies: React, Node.js, PostgreSQL, Stripe API
+						<p class="text-gray-600 dark:text-gray-400">
+							heyday (Human resources · impacted by layoffs) ·
+							Berlin, Germany · Remote
 						</p>
 					</div>
-					<div
-						class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
-					>
-						<h3
-							class="text-xl font-semibold mb-2 text-gray-900 dark:text-white"
-						>
-							Real-time Chat Application
-						</h3>
-						<p class="text-gray-700 dark:text-gray-300 mb-2">
-							Developed a real-time chat application using
-							WebSockets and React. Supports multiple rooms, file
-							sharing, and message history.
-						</p>
-						<p class="text-sm text-gray-500 dark:text-gray-400">
-							Technologies: React, Socket.io, Express, MongoDB
-						</p>
-					</div>
+					<p class="text-sm text-gray-500 dark:text-gray-400">
+						October 2021 – September 2022
+					</p>
 				</div>
-			</section>
-		</div>
+				<ul
+					class="mt-3 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
+				>
+					<li>
+						Empowered a team of 3 strong developers working with
+						NestJS, Next.js, Terraform, Kubernetes, AWS, Cypress,
+						and Jest.
+					</li>
+					<li>
+						Helped build a full-stack employee benefits platform.
+					</li>
+					<li>
+						Built invoice and automated payment systems, reducing
+						processes that took 3 days down to seconds.
+					</li>
+					<li>
+						Developed tax automations and calculators to help
+						employers offer optimized benefits.
+					</li>
+					<li>
+						Delivered mobile-first solutions for employee benefit
+						apps.
+					</li>
+					<li>
+						Maintained Kubernetes clusters with Terraform, balancing
+						low AWS costs with high availability.
+					</li>
+				</ul>
+			</div>
+
+			<!-- ThinxNet / Ryd -->
+			<div
+				class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+			>
+				<div
+					class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1"
+				>
+					<div>
+						<h3
+							class="text-xl font-semibold text-gray-900 dark:text-white"
+						>
+							Lead Backend Developer
+						</h3>
+						<p class="text-gray-600 dark:text-gray-400">
+							ThinxNet (now Ryd) · Automotive IoT · Munich,
+							Germany · Remote
+						</p>
+					</div>
+					<p class="text-sm text-gray-500 dark:text-gray-400">
+						December 2020 – September 2021
+					</p>
+				</div>
+				<ul
+					class="mt-3 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
+				>
+					<li>
+						Managed a team of 4 developers working on NestJS and
+						PostgreSQL microservices.
+					</li>
+					<li>
+						Implemented multiple point-of-sale integrations across
+						varied communication protocols.
+					</li>
+					<li>
+						Created a code-generation approach for integrations,
+						cutting typical integration time from ~3 months to ~2
+						weeks.
+					</li>
+				</ul>
+			</div>
+
+			<!-- Concept Reply -->
+			<div
+				class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+			>
+				<div
+					class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1"
+				>
+					<div>
+						<h3
+							class="text-xl font-semibold text-gray-900 dark:text-white"
+						>
+							Senior Consultant
+						</h3>
+						<p class="text-gray-600 dark:text-gray-400">
+							Concept Reply (Automotive IoT) · Munich, Germany ·
+							Remote
+						</p>
+					</div>
+					<p class="text-sm text-gray-500 dark:text-gray-400">
+						September 2019 – December 2020
+					</p>
+				</div>
+				<ul
+					class="mt-3 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
+				>
+					<li>
+						Led a rotating team of developers on industrial IoT
+						projects.
+					</li>
+					<li>
+						Worked primarily on an OPC-UA, MQTT, and
+						TypeScript-based industrial systems management platform.
+					</li>
+					<li>
+						Advised on multiple projects leveraging Python, Java,
+						and TypeScript due to polyglot background.
+					</li>
+				</ul>
+			</div>
+
+			<!-- Workerbase -->
+			<div
+				class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+			>
+				<div
+					class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1"
+				>
+					<div>
+						<h3
+							class="text-xl font-semibold text-gray-900 dark:text-white"
+						>
+							Lead Full-stack Developer
+						</h3>
+						<p class="text-gray-600 dark:text-gray-400">
+							Workerbase (Industrial IoT) · Munich, Germany
+						</p>
+					</div>
+					<p class="text-sm text-gray-500 dark:text-gray-400">
+						May 2018 – August 2019
+					</p>
+				</div>
+				<ul
+					class="mt-3 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
+				>
+					<li>
+						Built a full-stack app-builder for industrial processes
+						using MQTT, Node.js, React, and OPC-UA.
+					</li>
+					<li>
+						Created an end-to-end testing infrastructure using Jest,
+						Testcontainers, and Cypress.
+					</li>
+				</ul>
+			</div>
+
+			<!-- Tanaza -->
+			<div
+				class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+			>
+				<div
+					class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1"
+				>
+					<div>
+						<h3
+							class="text-xl font-semibold text-gray-900 dark:text-white"
+						>
+							Senior Full-stack Developer
+						</h3>
+						<p class="text-gray-600 dark:text-gray-400">
+							Tanaza (Cloud &amp; WiFi Management) · Milan, Italy
+							· Remote
+						</p>
+					</div>
+					<p class="text-sm text-gray-500 dark:text-gray-400">
+						August 2016 – May 2018
+					</p>
+				</div>
+				<ul
+					class="mt-3 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
+				>
+					<li>
+						Worked on WiFi management systems using React, GraphQL,
+						PostgreSQL, TypeScript, Apollo, and Express.
+					</li>
+					<li>
+						Built a corporate and public WiFi editor that was both
+						easy to use and highly flexible.
+					</li>
+				</ul>
+			</div>
+
+			<!-- Freelancer / Employed -->
+			<div
+				class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+			>
+				<div
+					class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1"
+				>
+					<div>
+						<h3
+							class="text-xl font-semibold text-gray-900 dark:text-white"
+						>
+							Freelancer / Employed
+						</h3>
+						<p class="text-gray-600 dark:text-gray-400">
+							Miscellaneous · Multiple countries
+						</p>
+					</div>
+					<p class="text-sm text-gray-500 dark:text-gray-400">
+						February 2004 – August 2016
+					</p>
+				</div>
+				<ul
+					class="mt-3 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300"
+				>
+					<li>
+						Consulted on multiple projects for an Ireland-based team
+						augmentation company.
+					</li>
+					<li>
+						Implemented an applicant tracking system that formed the
+						basis of a Brazilian startup.
+					</li>
+					<li>
+						Built multimedia projects including teaching platforms,
+						web radios, online gambling, and remote video services.
+					</li>
+					<li>
+						Served as Team Lead with 3 direct reports, handling all
+						technology aspects of a music branding business.
+					</li>
+					<li>
+						Developed a C++ DRM system allowing licensed music on
+						disk to be played back in real time.
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- Education -->
+		<section class="space-y-4">
+			<h2
+				class="text-2xl font-bold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
+			>
+				Education
+			</h2>
+			<div
+				class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+			>
+				<div
+					class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1"
+				>
+					<div>
+						<h3
+							class="text-lg font-semibold text-gray-900 dark:text-white"
+						>
+							B.Sc. Computer Science
+						</h3>
+						<p class="text-gray-600 dark:text-gray-400">
+							Federal University of the ABC Region · Santo André,
+							Brazil
+						</p>
+					</div>
+					<p class="text-sm text-gray-500 dark:text-gray-400">
+						2009 – 2016
+					</p>
+				</div>
+			</div>
+			<div
+				class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"
+			>
+				<div
+					class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1"
+				>
+					<div>
+						<h3
+							class="text-lg font-semibold text-gray-900 dark:text-white"
+						>
+							Technical Degree – Mechatronics
+						</h3>
+						<p class="text-gray-600 dark:text-gray-400">
+							Technical School Jorge Street · São Caetano do Sul,
+							Brazil
+						</p>
+					</div>
+					<p class="text-sm text-gray-500 dark:text-gray-400">
+						2005 – 2006
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Volunteer Work -->
+		<section class="space-y-4">
+			<h2
+				class="text-2xl font-bold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
+			>
+				Volunteer Work
+			</h2>
+			<div
+				class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 space-y-2"
+			>
+				<p class="text-gray-700 dark:text-gray-300">
+					<strong class="font-semibold"
+						>ReDI School of Digital Integration</strong
+					>
+					– Java Teacher · Spring 2020
+				</p>
+				<p class="text-gray-700 dark:text-gray-300">
+					<strong class="font-semibold"
+						>ReDI School of Digital Integration</strong
+					>
+					– Java Teacher · Fall 2019
+				</p>
+				<p class="text-gray-700 dark:text-gray-300">
+					<strong class="font-semibold">freeCodeCamp São Paulo</strong
+					> – Community Manager · 2018–2019
+				</p>
+			</div>
+		</section>
+
+		<!-- Skills -->
+		<section class="space-y-4">
+			<h2
+				class="text-2xl font-bold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2"
+			>
+				Skills
+			</h2>
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+				<div>
+					<h3
+						class="font-semibold mb-2 text-gray-900 dark:text-white"
+					>
+						Languages
+					</h3>
+					<p class="text-gray-700 dark:text-gray-300">
+						Portuguese (native), English (C2), German (A2)
+					</p>
+				</div>
+			</div>
+		</section>
 	</article>
 </BaseLayout>
