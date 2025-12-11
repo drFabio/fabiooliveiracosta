@@ -126,6 +126,34 @@ html {
 	}
 }
 
+@keyframes pulsate_text_reverse {
+	100% {
+		/* Larger blur radius */
+		text-shadow:
+			0 0 4px var(--_shadow-color),
+			0 0 11px var(--_shadow-color),
+			0 0 19px var(--_shadow-color),
+			0 0 40px var(--_shadow-color-off),
+			0 0 80px var(--_shadow-color-off),
+			0 0 90px var(--_shadow-color-off),
+			0 0 100px var(--_shadow-color-off),
+			0 0 150px var(--_shadow-color-off);
+	}
+
+	0% {
+		/* A slightly smaller blur radius */
+		text-shadow:
+			0 0 4px var(--_shadow-color),
+			0 0 10px var(--_shadow-color),
+			0 0 18px var(--_shadow-color),
+			0 0 38px var(--_shadow-color-off),
+			0 0 73px var(--_shadow-color-off),
+			0 0 80px var(--_shadow-color-off),
+			0 0 94px var(--_shadow-color-off),
+			0 0 140px var(--_shadow-color-off);
+	}
+}
+
 @keyframes pulsate_box {
 	100% {
 		/* Larger blur radius */
@@ -160,6 +188,17 @@ html {
 	animation: pulsate_text var(--_pulse-duration) ease-in-out infinite alternate;
 
 }
+
+.light {
+
+	.text-glow:active,
+	.text-glow:hover,
+	.text-glow:focus {
+		animation: pulsate_text_reverse var(--_pulse-duration) ease-in-out infinite alternate;
+
+	}
+}
+
 
 .box-glow:active,
 .box-glow:hover,
