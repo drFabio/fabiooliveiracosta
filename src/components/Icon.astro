@@ -1,32 +1,31 @@
 ---
-import { parse } from 'node-html-parser';
+import { parse } from "node-html-parser";
+import type { HTMLAttributes } from "astro/types";
 
-export interface Props {
+export interface Props extends HTMLAttributes<"svg"> {
   icon: string;
 }
 
 const { icon, ...attributes } = Astro.props as Props;
-const { default: originalSvg } = await import(`/public/${icon}.svg?raw`);
-
-
+const { default: originalSvg } = await import(
+  /* @vite-ignore */ `/public/${icon}.svg?raw`
+);
 
 // const innerHTML = addAttributesToInnerHTMLString(svg, attributes);
 const root = parse(originalSvg);
-const svg = root.querySelector('svg');
+const svg = root.querySelector("svg");
 
-const { attributes:svgAttributes, innerHTML } = svg;
+const { attributes: svgAttributes, innerHTML } = svg!;
 
-
-const mergedAttributes = Object.entries(attributes).reduce((acc, [key,value]) => {
-  if (key === 'class') {
-    return { ...acc, [key]:`${value}  ${acc?.class ?? ''}`.trim()}
-  }
-  return {...acc, [key]:value}
-
-},svgAttributes )
+const mergedAttributes = Object.entries(attributes).reduce(
+  (acc, [key, value]) => {
+    if (key === "class") {
+      return { ...acc, [key]: `${value}  ${acc?.class ?? ""}`.trim() };
+    }
+    return { ...acc, [key]: value };
+  },
+  svgAttributes,
+);
 ---
 
-<svg
-  {...mergedAttributes}
-  set:html={innerHTML}
-></svg>
+<svg {...mergedAttributes as any} set:html={innerHTML} />

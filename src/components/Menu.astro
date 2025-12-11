@@ -1,5 +1,5 @@
 ---
-import Icon from './Icon.astro'
+import ThemeToggler from "./ThemeToggler.astro";
 ---
 
 <header class="sticky top-0 z-50 theme-header backdrop-blur-sm border-b">
@@ -30,15 +30,7 @@ import Icon from './Icon.astro'
                 >
                     CV
                 </a>
-                <button
-                    id="theme-toggle"
-                    class="theme-toggle inline-flex items-center justify-center"
-                    aria-label="Toggle dark mode"
-                >
-                
-                    <Icon icon="sun" class="on-dark" />
-                    <Icon icon="moon"  class="on-light"/>
-                </button>
+                <ThemeToggler />
             </div>
         </div>
     </nav>
