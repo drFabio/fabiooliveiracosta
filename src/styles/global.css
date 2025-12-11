@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Theme color tokens */
 :root {
 	color-scheme: light;
 
@@ -29,6 +28,13 @@
 	/* Header */
 	--color-header-bg: rgba(255, 255, 255, 0.8);
 	--color-header-border: rgba(229, 231, 235, 1);
+
+}
+
+:root.light {
+	.on-dark {
+		display: none;
+	}
 }
 
 :root.dark {
@@ -59,9 +65,12 @@
 	/* Header */
 	--color-header-bg: rgba(15, 23, 42, 0.85);
 	--color-header-border: rgba(31, 41, 55, 1);
+
+	.on-light {
+		display: none;
+	}
 }
 
-/* Base typography improvements */
 body {
 	font-feature-settings: "kern" 1, "liga" 1;
 	-webkit-font-smoothing: antialiased;
@@ -71,43 +80,11 @@ body {
 	color: var(--color-text);
 }
 
-/* Theme utility classes (non-Tailwind) */
-.theme-header {
-	background-color: var(--color-header-bg);
-	border-color: var(--color-header-border);
+button:hover,
+a:hover {
+	cursor: pointer;
 }
 
-.theme-card {
-	background-color: var(--color-surface);
-	border-color: var(--color-border);
-}
-
-.theme-text-muted {
-	color: var(--color-text-muted);
-}
-
-.theme-toggle {
-	background-color: var(--color-surface);
-	color: var(--color-text);
-	border-radius: 0.5rem;
-	padding: 0.5rem;
-	transition:
-		background-color 150ms ease,
-		color 150ms ease,
-		border-color 150ms ease;
-}
-
-.theme-toggle:hover {
-	background-color: var(--color-accent-soft);
-}
-
-/* Focus styles for accessibility */
-*:focus-visible {
-	outline: 2px solid theme('colors.gray.500');
-	outline-offset: 2px;
-}
-
-/* Smooth scrolling */
 html {
 	scroll-behavior: smooth;
 }
