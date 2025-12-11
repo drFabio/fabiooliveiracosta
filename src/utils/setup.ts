@@ -1,4 +1,4 @@
-import { getUserSetup } from './getUserSetup'
+import { getUserPreferences } from './getUserPreferences'
 import { setTheme } from './setTheme';
 import { themes, type Theme } from './common'
 
@@ -8,7 +8,7 @@ function toogleTheme(_e: PointerEvent) {
     setTheme(currentTheme !== 'dark');
 }
 function setup() {
-    const { theme } = getUserSetup()
+    const { theme } = getUserPreferences()
     setTheme(theme === 'dark');
     document.getElementById('theme-toggle')?.addEventListener("click", toogleTheme)
 }
