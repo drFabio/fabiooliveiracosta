@@ -1,0 +1,45 @@
+---
+import Icon from './Icon.astro'
+---
+
+<header class="sticky top-0 z-50 theme-header backdrop-blur-sm border-b">
+    <nav class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <a
+                href="/"
+                class="text-xl font-bold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+            >
+                Portfolio
+            </a>
+            <div class="flex items-center gap-6">
+                <a
+                    href="/"
+                    class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                >
+                    Home
+                </a>
+                <a
+                    href="/about"
+                    class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                >
+                    About
+                </a>
+                <a
+                    href="/cv"
+                    class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                >
+                    CV
+                </a>
+                <button
+                    id="theme-toggle"
+                    class="theme-toggle inline-flex items-center justify-center"
+                    aria-label="Toggle dark mode"
+                >
+                
+                    <Icon icon="sun" class="on-dark" />
+                    <Icon icon="moon"  class="on-light"/>
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>

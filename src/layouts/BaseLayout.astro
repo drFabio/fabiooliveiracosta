@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Menu from "../components/Menu.astro";
 
 interface Props {
 	title: string;
@@ -7,10 +8,11 @@ interface Props {
 }
 
 const { title, description = "Developer Portfolio" } = Astro.props;
+const theme = "dark";
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class={`scroll-smooth ${theme}`}>
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -18,99 +20,10 @@ const { title, description = "Developer Portfolio" } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<title>{title}</title>
-		<script is:inline>
-			// Apply theme as early as possible to avoid flashes
-			(function () {
-				try {
-					const stored = localStorage.getItem("theme");
-					const prefersDark = window.matchMedia(
-						"(prefers-color-scheme: dark)",
-					).matches;
-					const shouldBeDark =
-						stored === "dark" || (!stored && prefersDark);
-
-					if (shouldBeDark) {
-						document.documentElement.classList.add("dark");
-					} else {
-						document.documentElement.classList.remove("dark");
-					}
-				} catch (e) {
-					// Fallback if localStorage is not available
-					console.warn("Could not set initial theme:", e);
-				}
-			})();
-		</script>
+		<script src="../utils/setup.ts"/>
 	</head>
 	<body class="transition-colors duration-200">
-		<header
-			class="sticky top-0 z-50 theme-header backdrop-blur-sm border-b"
-		>
-			<nav class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="flex items-center justify-between h-16">
-					<a
-						href="/"
-						class="text-xl font-bold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-					>
-						Portfolio
-					</a>
-					<div class="flex items-center gap-6">
-						<a
-							href="/"
-							class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-						>
-							Home
-						</a>
-						<a
-							href="/about"
-							class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-						>
-							About
-						</a>
-						<a
-							href="/cv"
-							class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-						>
-							CV
-						</a>
-						<button
-							id="theme-toggle"
-							class="theme-toggle inline-flex items-center justify-center"
-							aria-label="Toggle dark mode"
-						>
-							<svg
-								id="sun-icon"
-								class="w-5 h-5 text-gray-900 dark:hidden"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-								></path>
-							</svg>
-							<svg
-								id="moon-icon"
-								class="w-5 h-5 text-gray-100 hidden dark:block"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-								></path>
-							</svg>
-						</button>
-					</div>
-				</div>
-			</nav>
-		</header>
-
+		<Menu />
 		<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
 			<slot />
 		</main>
@@ -144,61 +57,5 @@ const { title, description = "Developer Portfolio" } = Astro.props;
 				</div>
 			</div>
 		</footer>
-
-		<script>
-			// Theme toggle functionality
-			document.addEventListener("DOMContentLoaded", function () {
-				const themeToggle = document.getElementById("theme-toggle");
-				const html = document.documentElement;
-				const sunIcon = document.getElementById("sun-icon");
-				const moonIcon = document.getElementById("moon-icon");
-
-				if (!themeToggle) {
-					console.warn("Theme toggle button not found");
-					return;
-				}
-
-				// Update icon visibility
-				function updateIcons() {
-					const isDark = html.classList.contains("dark");
-					if (sunIcon) {
-						sunIcon.classList.toggle("hidden", isDark);
-					}
-					if (moonIcon) {
-						moonIcon.classList.toggle("hidden", !isDark);
-					}
-				}
-
-				// Apply theme
-				/** @param {"light" | "dark"} theme */
-				function setTheme(theme: "light" | "dark") {
-					if (theme === "dark") {
-						html.classList.add("dark");
-					} else {
-						html.classList.remove("dark");
-					}
-					try {
-						localStorage.setItem("theme", theme);
-					} catch (e) {
-						console.warn(
-							"Could not save theme to localStorage:",
-							e,
-						);
-					}
-					updateIcons();
-				}
-
-				// Initialize icons based on current theme
-				updateIcons();
-
-				// Toggle theme on button click
-				themeToggle.addEventListener("click", function () {
-					const currentTheme = html.classList.contains("dark")
-						? "dark"
-						: "light";
-					setTheme(currentTheme === "dark" ? "light" : "dark");
-				});
-			});
-		</script>
 	</body>
 </html>
