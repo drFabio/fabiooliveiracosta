@@ -30,10 +30,10 @@
 	--color-header-bg: rgba(40, 1, 124, 0.8);
 	--color-header-border: rgba(229, 231, 235, 1);
 	--_shadow-size: 1.5em;
-	--_shadow-color: #fff;
+	--_shadow-color: #0065ff;
 	--_shadow-color-off: #000;
 
-
+	--_pulse-duration: 1s;
 }
 
 :root.light {
@@ -45,6 +45,7 @@
 :root.dark {
 	--_shadow-color: #f09;
 	--_shadow-color-off: #fff;
+	--_pulse-duration: 0.11s;
 
 	color-scheme: dark;
 
@@ -101,9 +102,9 @@ html {
 	100% {
 		/* Larger blur radius */
 		text-shadow:
-			0 0 4px #fff,
-			0 0 11px #fff,
-			0 0 19px #fff,
+			0 0 4px var(--_shadow-color-off),
+			0 0 11px var(--_shadow-color-off),
+			0 0 19px var(--_shadow-color-off),
 			0 0 60px var(--_shadow-color),
 			0 0 100px var(--_shadow-color),
 			0 0 110px var(--_shadow-color),
@@ -114,9 +115,9 @@ html {
 	0% {
 		/* A slightly smaller blur radius */
 		text-shadow:
-			0 0 4px #fff,
-			0 0 10px #fff,
-			0 0 18px #fff,
+			0 0 4px var(--_shadow-color-off),
+			0 0 10px var(--_shadow-color-off),
+			0 0 18px var(--_shadow-color-off),
 			0 0 38px var(--_shadow-color),
 			0 0 73px var(--_shadow-color),
 			0 0 80px var(--_shadow-color),
@@ -129,9 +130,9 @@ html {
 	100% {
 		/* Larger blur radius */
 		box-shadow:
-			0 0 4px #fff,
-			0 0 11px #fff,
-			0 0 19px #fff,
+			0 0 4px var(--_shadow-color-off),
+			0 0 11px var(--_shadow-color-off),
+			0 0 19px var(--_shadow-color-off),
 			0 0 60px var(--_shadow-color),
 			0 0 100px var(--_shadow-color),
 			0 0 110px var(--_shadow-color),
@@ -142,9 +143,9 @@ html {
 	0% {
 		/* A slightly smaller blur radius */
 		box-shadow:
-			0 0 4px #fff,
-			0 0 10px #fff,
-			0 0 18px #fff,
+			0 0 4px var(--_shadow-color-off),
+			0 0 10px var(--_shadow-color-off),
+			0 0 18px var(--_shadow-color-off),
 			0 0 38px var(--_shadow-color),
 			0 0 73px var(--_shadow-color),
 			0 0 80px var(--_shadow-color),
@@ -156,13 +157,25 @@ html {
 .text-glow:active,
 .text-glow:hover,
 .text-glow:focus {
-	animation: pulsate_text 0.11s ease-in-out infinite alternate;
+	animation: pulsate_text var(--_pulse-duration) ease-in-out infinite alternate;
 
 }
 
 .box-glow:active,
 .box-glow:hover,
 .box-glow:focus {
-	animation: pulsate_box 0.11s ease-in-out infinite alternate;
+	animation: pulsate_box var(--_pulse-duration) ease-in-out infinite alternate;
 
+}
+
+@media screen and (prefers-reduced-motion) {
+
+	.box-glow:active,
+	.box-glow:hover,
+	.box-glow:focus,
+	.text-glow:active,
+	.text-glow:hover,
+	.text-glow:focus {
+		animation: none;
+	}
 }
