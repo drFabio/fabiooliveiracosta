@@ -6,8 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://drfabio.github.io',
+  base: '/fabiooliveiracosta',
   vite: {
-    base: '/fabiooliveiracosta',
     plugins: [tailwindcss()]
   }
 });
