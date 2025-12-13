@@ -1,0 +1,171 @@
+{
+    "data": [
+        {
+            "type_of": "article",
+            "id": 733807,
+            "title": "Building a temporary database for testing and development",
+            "description": "TL;DR   Add the initial data to the volume, and run docker-compose with the renew anon...",
+            "published": true,
+            "published_at": "2021-06-20T16:32:42.369Z",
+            "slug": "building-a-temporary-database-for-testing-and-development-2g52",
+            "path": "/drfabio/building-a-temporary-database-for-testing-and-development-2g52",
+            "url": "https://dev.to/drfabio/building-a-temporary-database-for-testing-and-development-2g52",
+            "comments_count": 0,
+            "public_reactions_count": 3,
+            "page_views_count": 882,
+            "published_timestamp": "2021-06-20T16:32:42Z",
+            "body_markdown": "### TL;DR\nAdd the initial data to the volume, and run docker-compose with the renew anon volumes argument (-V)\n\n### Introduction\nSo you have built your system and now is time to test it, or you want to do a demo and everything needs to be set up on a given state. Unfortunately, you were testing some changes and now you need to clean up the database, or even worse perform a series of actions just to get it in the desired state.\n\nLuckily there are a few actions you can take to make your life easier.\n\nThese next tips will assume you have docker and docker compose installed as these will be the backbone of the solution.\n\n## Step 1 - An empty database with docker\n\nLet's say you just want a runnable database to start developing, perhaps you are playing with some ORM[^1] solution, an empty database can be quite handy.\n\nThe following docker command can do the trick for postgres:\n\n```sh\ndocker run -e POSTGRES_USER=my_user -e POSTGRES_PASSWORD=my_password -e POSTGRES_DB=some_db postgres:13 \n```\n\nA one-liner and we have an accessible database to our heart's content.\n\n## Step 2 - A databse witth initial data and docker\nA database without data is nice but a database already set up is even nicer. For that we can use [volumes](https://docs.docker.com/storage/volumes/) and an initial data for the database dump. [The initialization scripts section] of the postgres image tells us that all we need to do is copy some [dump](https://www.postgresql.org/docs/12/app-pgdump.html) to the folder /docker-entrypoint-initdb.d/.\n\nThis would be done with this argument:\n\n```sh\n--mount type=bind,source=/some/path/my_dump.sql,target=/docker-entrypoint-initdb.d/dump.sql \n```\n\nSo our full command would look like \n\n```sh\ndocker run -e POSTGRES_USER=my_user -e POSTGRES_PASSWORD=my_password -e POSTGRES_DB=some_db  --mount type=bind,source=/some/path/my_dump.sql,target=/docker-entrypoint-initdb.d/dump.sql  postgres:13 \n ```\n\n[^1]: [Object Relational Mapping](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping)\n\n### Step 3 - Tidying it up with docker-compose\nDocker is useful but docker-compose makes things more manageable.\n\nWith 2 tricks we can have our database running temporarily without much hassle.\n\n#### Step 3.1 Convert the docker to docker-compose yaml\n\nLet's just add the arguments of our command line to a compose file.\n\n```yaml\n# docker-compose.yml\nversion: \"3\"\nservices:\n  db:\n    image: postgres:13\n    environment:\n      POSTGRES_PASSWORD: \"my_password\"\n      POSTGRES_USER: \"my_user\"\n      POSTGRES_DB: \"some_db\"\n    volumes:\n      -  ./some/path/my_dump.sql:/docker-entrypoint-initdb.d/my_dump.sql\n```\n\nThis is very nice, run it with the following command, and your database will be there same as before.\n\n```sh\ndocker-compose up\n\n```\n#### Step 3.2 Making sure our database remains the same\n\nIf we ran the previous command and delete a record we would be losing that record next time. This is sometimes not desirable for testing, demos, or even general development. I find oy very calming to have the same environment every time.\n\nTo achieve that we need to renew the volumes. Running it with the argument -V , from [compose docs](https://docs.docker.com/compose/reference/up/) ,this states the following:\n\n>  -V, --renew-anon-volumes   Recreate anonymous volumes instead of retrieving data from the previous containers.\n\nThis makes our command to start the database looks like this:\n\n```sh\ndocker-compose up -V db\n```\n\nNow if you delete some initial data and execute the command again the state will be brought right back to how it was.\n\nHope you folks find it helpful.\n\n\n",
+            "positive_reactions_count": 3,
+            "cover_image": "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fcqfv0llhii60defg3kxa.jpg",
+            "tag_list": [
+                "docker",
+                "database",
+                "testing"
+            ],
+            "canonical_url": "https://dev.to/drfabio/building-a-temporary-database-for-testing-and-development-2g52",
+            "reading_time_minutes": 3,
+            "user": {
+                "name": "Fabio Oliveira Costa",
+                "username": "drfabio",
+                "twitter_username": null,
+                "github_username": "drFabio",
+                "user_id": 264120,
+                "website_url": null,
+                "profile_image": "https://media2.dev.to/dynamic/image/width=640,height=640,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F264120%2F32b420f3-5d92-4e5a-9079-5c1961b38833.jpeg",
+                "profile_image_90": "https://media2.dev.to/dynamic/image/width=90,height=90,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F264120%2F32b420f3-5d92-4e5a-9079-5c1961b38833.jpeg"
+            }
+        },
+        {
+            "type_of": "article",
+            "id": 292644,
+            "title": "Introduction to container based development part 4/4 - Compose",
+            "description": "This is the fourth part of our container based development series. Check the other posts at the end o...",
+            "published": true,
+            "published_at": "2020-03-26T20:15:34.841Z",
+            "slug": "introduction-to-container-based-development-part-4-4-compose-41lp",
+            "path": "/drfabio/introduction-to-container-based-development-part-4-4-compose-41lp",
+            "url": "https://dev.to/drfabio/introduction-to-container-based-development-part-4-4-compose-41lp",
+            "comments_count": 2,
+            "public_reactions_count": 8,
+            "page_views_count": 152,
+            "published_timestamp": "2020-03-26T20:15:34Z",
+            "body_markdown": "This is the fourth part of our container based development series. Check the other posts at the end of this one.\n\nThis post is based on the container development [article]( https://github.com/drFabio/containerDevelopment/blob/master/article.pdf) created by me.\n\nRunning containers manually is useful but it quickly gets out of hand when you need to manage complex architectures, to make things easy we can use [docker-compose](https://docs.docker.com/compose/). It has a nice and centralized way to create multiple containers at the same time.\n\nLet's port our old example with docker-compose and see how it looks.The [official documentation](https://docs.docker.com/compose/gettingstarted/) is full of more info and all the files for this step are on the projects repository on the [firstDockerCompose branch](https://github.com/drFabio/containerDevelopment/tree/firstDockerCompose).\n\nLet's create on the same folder that our files are a folder to use as a volume. It is customary to keep all docker-compose related files under the same root, this folder will be called \"ourLocalVolume\". Then we need to create a [compose file](https://docs.docker.com/compose/compose-file/). This compose file is defining a single service called runner, building it from a local dockerFile and creating a volume called ourLocalVolume mounted on the container /app/ourApp/data.\n\n```yml\nversion: '3'\nservices:\n  runner:\n    build: .\n    volumes:\n      - ./ourLocalVolume:/app/ourApp/data\n```\n\nTo run our solution we need to do the following command on the terminal:\n\n```shell\ndocker-compose up\n```\n\nIf we make a change to our file we need to rebuild it with:\n```shell\ndocker-compose build\n```\n\nOr we need to run and build with:\n\n```shell\ndocker-compose up --build\n```\n\nRebuilding every time is not very productive. Our code is also very simple we are not doing anything special with the node image we could easily be more productive if our code changes on the host machine would be transferred to the container. The way to achieve that is by using a volume with our code and our data , actually after all this changes we don't even need to make our own custom Dockerfile we can do everything using docker-compose. We are going to tidy our space a little so see the changes the [secondDockerCompose branch](https://github.com/drFabio/containerDevelopment/tree/secondDockerCompose).\n\nOur compose volume changed and now we are going to use the node image directly:\n```yml\nversion: '3'\nservices:\n  runner:\n    image: node:13-alpine3.10\n    volumes:\n      - ./src:/app\n    working_dir: /app\n    command: node ./nodeCounter.js\n```\nSince our code now lives on a volume along with our data we can update our code without needing to rebuild an image. Also since we are essentially only using a node image we do not need to create a custom image every time.\n\n## Getting dangerous, multiple services!\n\nOk compose for a single service is nice but not as nice as managing an actual architecture.\n\nWe are going to maintain this counter but it will count to up to 20 and then reset and never stop.Also we are going to make a web frontend with php that is going to show the counter as it was at the moment somebody entered the page. Our file architecture will change again so check the \n[thirdDockerCompose branch](https://github.com/drFabio/containerDevelopment/tree/thirdDockerCompose).\n\nWe are going to change our node to run from a fixed place that is going to be our volume data\n```javascript\nconst fs = require('fs')\nconst path = require('path')\n\nconst counterFile = path.resolve('/data/counter.txt')\n\nconst COUNTER_LIMIT = 20\nconst INTERVAL = 1000\nlet counterData = 0\nif (fs.existsSync(counterFile)) {\n  const fileData = fs.readFileSync(counterFile)\n  counterData = parseInt(fileData, 10)\n}\n\nconst stopCounter = counterData + COUNTER_LIMIT\n\nconst recursiveCounter = () => {\n  if (counterData === stopCounter) {\n    counterData = 0\n  }\n  console.log(counterData)\n  counterData++\n  fs.writeFileSync(counterFile, counterData)\n  setTimeout(recursiveCounter, INTERVAL)\n}\n\nrecursiveCounter()\n```\n\nAnd this will be our PHP code:\n\n```php\n<?php\n    $counter = file_get_contents('/data/counter.txt');\n?>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n  <title>Counter <?=$counter ?></title>\n</head>\n<body>\n  <h1>Welcome to the counter view</h1>\n  <p>At this moment the counter is <?=$counter ?></p>\n  <p>Reload for even more counter fun!</p>\n</body>\n</html>\n```\nOur docker-compose needs to change so it will have 2 services! Also we will link the volumes so the PHP can read what node is writing.\n\n```yml\nversion: '3'\nservices:\n  runner:\n    image: node:13-alpine3.10\n    volumes:\n      - ./src/counter:/app\n      - ./src/data:/data\n    working_dir: /app\n    command: node ./nodeCounter.js\n  web:\n    image: php:7.2-apache\n    volumes:\n      - ./src/web:/var/www/html/\n      - ./src/data:/data\n    ports:\n      - 8081:80\n```\n\nIf we run docker-compose up we should be able to see our page on http://localhost:8081. Reload and you will see changes.\nAlso Note that our system now never stop to exit we need to send a [SIGTERM](https://www.gnu.org/software/libc/manual/html_node/Termination-Signals.html) by typing \"ctrl+c\"\n\nLet's take a moment to appreciate what is happening:\n\n- We created 2 services based on 2 different images.\n- We created 4 volumes being 2 of them shared between different containers.\n- We create a port forwarding from a container to our host machine.\n- We \"installed\" a php with apache and node with only 16 lines of code!\n\nNow that you were introduced to containers see how they can help you be a more productive and happier dev. Also there is one bonus part on the PDF [article](https://github.com/drFabio/containerDevelopment/blob/master/article.pdf) when we add a Redis database to our Node, PHP project just for the laughs.\n\nHave fun, be happy, be healthy be kind. ",
+            "positive_reactions_count": 8,
+            "cover_image": null,
+            "tag_list": [
+                "docker"
+            ],
+            "canonical_url": "https://dev.to/drfabio/introduction-to-container-based-development-part-4-4-compose-41lp",
+            "reading_time_minutes": 4,
+            "user": {
+                "name": "Fabio Oliveira Costa",
+                "username": "drfabio",
+                "twitter_username": null,
+                "github_username": "drFabio",
+                "user_id": 264120,
+                "website_url": null,
+                "profile_image": "https://media2.dev.to/dynamic/image/width=640,height=640,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F264120%2F32b420f3-5d92-4e5a-9079-5c1961b38833.jpeg",
+                "profile_image_90": "https://media2.dev.to/dynamic/image/width=90,height=90,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F264120%2F32b420f3-5d92-4e5a-9079-5c1961b38833.jpeg"
+            }
+        },
+        {
+            "type_of": "article",
+            "id": 292627,
+            "title": "Introduction to container based development - Part 3/4 - Volumes",
+            "description": "This is the third part of our container based development series  This post is based on the container...",
+            "published": true,
+            "published_at": "2020-03-26T19:50:47.247Z",
+            "slug": "introduction-to-container-based-development-part-3-4-volumes-3pn9",
+            "path": "/drfabio/introduction-to-container-based-development-part-3-4-volumes-3pn9",
+            "url": "https://dev.to/drfabio/introduction-to-container-based-development-part-3-4-volumes-3pn9",
+            "comments_count": 0,
+            "public_reactions_count": 12,
+            "page_views_count": 142,
+            "published_timestamp": "2020-03-26T19:50:47Z",
+            "body_markdown": "This is the third part of our container based development series\n\nThis post is based on the container development [article]( https://github.com/drFabio/containerDevelopment/blob/master/article.pdf) created by me.\n\nOn the previous articles we did a program that count from 0 to 19 but could not do anything besides that. A program that can not persist is not so useful so let's modify our program a little so it will count the current file content and then count to that value +20. For that we need to create a [volume](https://docs.docker.com/storage/volumes/) on the container, this will make  a specific folder on the container persist when mounted. All the files for this step are on the projects repository on the [secondContainer branch](https://github.com/drFabio/containerDevelopment/tree/secondContainer).\n\nFirst we need to add a proper volume on our docker file.\n\n**Dockefile**\n\n```Dockerfile\nFROM node:13-alpine3.10\nRUN mkdir -p /app/ourApp/data\nCOPY ./nodeCounter.js  /app/ourApp/\nWORKDIR  /app/ourApp/\nVOLUME /app/ourApp/data/\nCMD node ./nodeCounter.js\n```\n\nThen we need to make sure our program don't stop at 20 but stops at start + 20\n\n**nodeCounter.js**\n\n```javascript\nconst fs = require('fs')\nconst path = require('path')\n\nconst counterFile = path.resolve(__dirname, './data/counter.txt')\n\nconst COUNTER_LIMIT = 20\nconst INTERVAL = 1000\nlet counterData = 0\nif (fs.existsSync(counterFile)) {\n  const fileData = fs.readFileSync(counterFile)\n  counterData = parseInt(fileData, 10)\n}\n\nconst stopCounter = counterData + COUNTER_LIMIT\n\nconst recursiveCounter = () => {\n  if (counterData === stopCounter) {\n    process.exit(0)\n  }\n  console.log(counterData)\n  counterData++\n  fs.writeFileSync(counterFile, counterData)\n  setTimeout(recursiveCounter, INTERVAL)\n}\n\nrecursiveCounter()\n```\n\nThen we need to build our image with the same name and a new tag.\n\n```shell\ndocker build -t container_dev:second  .\n```\n\nWe should see an output with the text:\n\n\"Successfully tagged container_dev:second\"\n\nBut out work is not over we need to actually create a volume on our computer (the host) so our container can read and write persistent data.\n\n```shell\ndocker volume create our-named-volume\n```\nBut where physically our volume is? For that we can inspect the volume and check it's exact path.\n\n```shell\ndocker volume inspect our-named-volume\n```\nThat would give all the volume data like the one below, the mountpoint is where docker created our volume.\n\n```text\n[\n    {\n        \"CreatedAt\": \"2020-03-20T10:44:48+01:00\",\n        \"Driver\": \"local\",\n        \"Labels\": {},\n        \"Mountpoint\": \"/var/lib/docker/volumes/our-named-volume/_data\",\n        \"Name\": \"our-named-volume\",\n        \"Options\": {},\n        \"Scope\": \"local\"\n    }\n]\n```\n\nNow to run our app with one new argument , -v to link the volume\n\n```shell\ndocker run -v our-named-volume:/app/ourApp container_dev:second\n```\n\nRun it twice and you will notice we start where we stopped. If you open 2 shells and do it a little bit after the first one start you should see they are sharing and modifying the same file (There is a race condition here but we don't mind for now).\n\nWe have a way to persist state, actually we even have a way to share the same set of files between multiple containers!\n\nI would like to call attention about the importance of mounting, if we run without the \"-v\" command we will have the same behavior as the first time, our state would not persist.\n\nSo let's see what we learned\n\n - For a volume to be accessible in the container we need to create it at some location inside the container.\n - We need to link a volume with the -v when running the docker run argument.\n -  Multiple containers can have access to the same volume.\n\nNext part: Containers and installing PHP alongside node in 16 lines of code!\n\n\n\n",
+            "positive_reactions_count": 12,
+            "cover_image": null,
+            "tag_list": [
+                "docker"
+            ],
+            "canonical_url": "https://dev.to/drfabio/introduction-to-container-based-development-part-3-4-volumes-3pn9",
+            "reading_time_minutes": 3,
+            "user": {
+                "name": "Fabio Oliveira Costa",
+                "username": "drfabio",
+                "twitter_username": null,
+                "github_username": "drFabio",
+                "user_id": 264120,
+                "website_url": null,
+                "profile_image": "https://media2.dev.to/dynamic/image/width=640,height=640,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F264120%2F32b420f3-5d92-4e5a-9079-5c1961b38833.jpeg",
+                "profile_image_90": "https://media2.dev.to/dynamic/image/width=90,height=90,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F264120%2F32b420f3-5d92-4e5a-9079-5c1961b38833.jpeg"
+            }
+        },
+        {
+            "type_of": "article",
+            "id": 292615,
+            "title": "Introduction to container based development - Part 2/4",
+            "description": "This is the second part of our container based development series. This post is based on the containe...",
+            "published": true,
+            "published_at": "2020-03-26T19:25:22.347Z",
+            "slug": "introduction-to-container-based-development-part-2-4-1205",
+            "path": "/drfabio/introduction-to-container-based-development-part-2-4-1205",
+            "url": "https://dev.to/drfabio/introduction-to-container-based-development-part-2-4-1205",
+            "comments_count": 0,
+            "public_reactions_count": 10,
+            "page_views_count": 71,
+            "published_timestamp": "2020-03-26T19:25:22Z",
+            "body_markdown": "This is the second part of our container based development series. This post is based on the container development [article]( https://github.com/drFabio/containerDevelopment/blob/master/article.pdf) created by me.\n\n\n### Creating our image - Pressing our own CD.\n\nWe are going create a node program its behavior is the following.\n\n    \n- try to find a file and read from it;\n- output the content of the file;\n- save the content +1;\n- repeat every 1 second until 19.\n- if no content is found it will create the file and save with 0;\n\nThe code is on the repository on the [firstContainer branch](https://github.com/drFabio/containerDevelopment/tree/firstContainer).\n\n**nodeCounter.js**\n```javascript\nconst fs = require('fs')\nconst path = require('path')\n\nconst counterFile = path.resolve(__dirname, './counter.txt')\n\nconst COUNTER_LIMIT = 20\nconst INTERVAL = 1000\nlet counterData = 0\nif (fs.existsSync(counterFile)) {\n  const fileData = fs.readFileSync(counterFile)\n  counterData = parseInt(fileData, 10)\n}\n\nconst recursiveCounter = () => {\n  if (counterData === COUNTER_LIMIT) {\n    process.exit(0)\n  }\n  console.log(counterData)\n  counterData++\n  fs.writeFileSync(counterFile, counterData)\n  setTimeout(recursiveCounter, INTERVAL)\n}\n\nrecursiveCounter()\n```\n\nWith this code on some folder we also need to configure our container, to make how our CD is going to be built.\n\n*Dockerfile* (No extension)\n```dockerfile\nFROM node:13-alpine3.10\nRUN mkdir -p /app/ourApp/\nCOPY ./nodeCounter.js  /app/ourApp/\nWORKDIR  /app/ourApp/\nCMD node ./nodeCounter.js\n```\n\nThe dockerfile above have [some commands](https://docs.docker.com/engine/reference/builder/)\n\n* [FROM](https://docs.docker.com/engine/reference/builder/#from) - We are using a Node image that uses the alpien linux operating system.\n* [RUN](https://docs.docker.com/engine/reference/builder/#run) - On this image we are creating a folder.\n* [COPY](https://docs.docker.com/engine/reference/builder/#copy) - We are copying our node program to the folder.\n* [WORKDIR](https://docs.docker.com/engine/reference/builder/#workdir) - We change the working dir so all commands will run starting from this new location.\n* [CMD](https://docs.docker.com/engine/reference/builder/#cmd) - We say which command should run as soon as you play the CD.\n\nTo make our cd we execute the following on the terminal, it says to build a image called container_dev with the tag first using the dockerfile on the same folder I am executing the command.\n\n```shell\ndocker build -t container_dev:first  .\n```\nThe output will be something like:\n\n```text\nSending build context to Docker daemon  70.66kB\nStep 1/5 : FROM node:13-alpine3.10\n.......\nSuccessfully built 50c9fae3a235\nSuccessfully tagged container_dev:first\n```\nIf we want to see our images we can type \n\n```shell\ndocker images\n```\n\nTo see our container data like Ids, names , tags and so on.\n\n```text\nREPOSITORY                              TAG                 IMAGE ID\ncontainer_dev                           first               50c9fae3a235       \nnode                                    13-alpine3.10     \n```\n\nNow that our image has a name and a tag we can run it:\n\n```shell\ndocker run container_dev:first\n```\n\nAnd you should see a count from 0 to 19 and our image stopping. Congratulations you just created your first image!\nThis image is saving data on a file, run it again if we persisted data it should stop immediately since we are already on the 20 but now it will start again from 0, run it twice with a little delay each count will not interfere with each other. That is part of the security of containers they are isolated.\n\nOur next topic: Volumes!\n\n",
+            "positive_reactions_count": 10,
+            "cover_image": null,
+            "tag_list": [
+                "docker"
+            ],
+            "canonical_url": "https://dev.to/drfabio/introduction-to-container-based-development-part-2-4-1205",
+            "reading_time_minutes": 2,
+            "user": {
+                "name": "Fabio Oliveira Costa",
+                "username": "drfabio",
+                "twitter_username": null,
+                "github_username": "drFabio",
+                "user_id": 264120,
+                "website_url": null,
+                "profile_image": "https://media2.dev.to/dynamic/image/width=640,height=640,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F264120%2F32b420f3-5d92-4e5a-9079-5c1961b38833.jpeg",
+                "profile_image_90": "https://media2.dev.to/dynamic/image/width=90,height=90,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F264120%2F32b420f3-5d92-4e5a-9079-5c1961b38833.jpeg"
+            }
+        },
+        {
+            "type_of": "article",
+            "id": 292560,
+            "title": "Introduction to container based development - Part 1/4",
+            "description": "This post is based on the container development article wrote by me. We are going to review some basi...",
+            "published": true,
+            "published_at": "2020-03-26T19:19:53.719Z",
+            "slug": "introduction-to-container-based-development-part-1-4-1ai5",
+            "path": "/drfabio/introduction-to-container-based-development-part-1-4-1ai5",
+            "url": "https://dev.to/drfabio/introduction-to-container-based-development-part-1-4-1ai5",
+            "comments_count": 0,
+            "public_reactions_count": 12,
+            "page_views_count": 277,
+            "published_timestamp": "2020-03-26T19:19:53Z",
+            "body_markdown": "This post is based on the container development [article]( https://github.com/drFabio/containerDevelopment/blob/master/article.pdf) wrote by me. We are going to review some basics about containers and hopefully you are going to start loving and using them as much as me.\n\n\n## Requirements\nHave [docker](https://docs.docker.com/install/) and [docker-compose]({https://docs.docker.com/compose/install/) installed.\n\n## Introduction \nContainers borrow the name from shipping containers a mean of transportation that revolutionized the way we ship goods. Be it 100 tons of tuna, a whole house or thousands of unrelated Amazon packages they can be easily transported from anywhere to anywhere. Software containers are the same, the handlers of the containers don't care about what is inside they know how to handle containers and that is what make them flexible.\n\nOn the software world developing with containers allow us to eliminate the \"it works on my machine\", run multiple versions of the same software, create complex architectures on a local machine, make micros services with hundreds of different languages and many more nice things.\n\n## The concepts\n\n### Image\n\nThink of an image as a read only data, like a music “CD”. You could play the PHP CD, perhaps you are feeling a little javazzy and play the java CD or you want to do your own thing so you remix a  CD and put the data that you need. The CD *does not have a state* it is what it is and that particular CD will always have the same contents.\nA image is built with layers on top of a filesystem. Usually you create an image using another image and create it with a series of instructions, if docker already has these instructions on cache it will use that cache instead of building from scratch. Still on our CD metaphor the CD is done with each track separated, you have the drums, the guitar, the bass and the vocals each on a different layer, if you had a karaoke version of the CD the studio one would be the karaoke with the vocals track on top of it.\n\nImages are listed on a repository like [docker hub](https://hub.docker.com/) and have a name and a tag.\n\n![An image with its layers](https://dev-to-uploads.s3.amazonaws.com/i/ne7bk9n3pcs1lif95omj.png)\n\n### Container\n\nA container is a running image and *it has state but does not have persistence*. Think about a CD and somebody manipulating it like a DJ, it is doing changes to the current state of the CD but by the time the execution is done the CD is back on the case and nothing changed on it. The execution of the CD was the container and it can change as much as we need but it's changes will not change the image itself.\n\n### Volumes\n\nA volume is where we have *persistent state*, this is where our changes are not lost, this is how containers read and write persistent data. For example think on an application that counts sales, it would be a pretty lousy application if we lost all sale data as soon as the application was shutdown, for that we persist data on volumes. Most database images will have a volume. Still on the musical analogy our volume is our live recording, we are working on it and it will change, even if we have some fixed tracks we are still changing the data on this one.\n\n\n|  |State|Persistence|\n|---|---|---|\n|Image| No | No  |\n|Container| Yes | No  |\n|Volume| No | Yes |\n\n## Getting started\n\n### Running the first image - Playing the CD\nFirst we need our image on our system so we pull it from the repository. Execute the code below on you terminal.\n\n```shell\ndocker pull docker/whalesay:latest\n```\nThe output should say something like:\n\n\"Status: Downloaded newer image for docker/whalesay:latest\"\n\nThe image is on our system now we need to run it (Play the cd):\n\n```shell\ndocker run docker/whalesay cowsay \"Docker is awesome\"\n```\n\nAnd you should see the following:\n\n```text\n< Docker is awesome >\n ------------------- \n    \\\n     \\\n      \\     \n                    ##        .            \n              ## ## ##       ==            \n           ## ## ## ##      ===            \n       /\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"___/ ===        \n  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~   \n       \\______ o          __/            \n        \\    \\        __/             \n          \\____\\______/  \n```\n\nSo what happened? For a brief moment we run our image, that generated a container that printed a whale on the screen and then the container stopped.\n\nCongratulations you just used your first image and created your first container!\n\n### Acknowledgement\n\n[Photo by Kaique Rocha from Pexels](https://www.pexels.com/photo/business-commerce-container-export-379964/)",
+            "positive_reactions_count": 12,
+            "cover_image": "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fi%2F9bcgf9cbctedu3pejycz.jpg",
+            "tag_list": [
+                "docker"
+            ],
+            "canonical_url": "https://dev.to/drfabio/introduction-to-container-based-development-part-1-4-1ai5",
+            "reading_time_minutes": 3,
+            "user": {
+                "name": "Fabio Oliveira Costa",
+                "username": "drfabio",
+                "twitter_username": null,
+                "github_username": "drFabio",
+                "user_id": 264120,
+                "website_url": null,
+                "profile_image": "https://media2.dev.to/dynamic/image/width=640,height=640,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F264120%2F32b420f3-5d92-4e5a-9079-5c1961b38833.jpeg",
+                "profile_image_90": "https://media2.dev.to/dynamic/image/width=90,height=90,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F264120%2F32b420f3-5d92-4e5a-9079-5c1961b38833.jpeg"
+            }
+        }
+    ]
+}

@@ -6,12 +6,16 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "build:posts": "ts-node scripts/getDevToPosts/index.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.4",
     "node-html-parser": "^7.0.1",
     "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
   }
 }

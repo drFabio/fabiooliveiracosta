@@ -7,9 +7,7 @@ export interface Props extends HTMLAttributes<"svg"> {
 }
 
 const { icon, ...attributes } = Astro.props as Props;
-const { default: originalSvg } = await import(
-  /* @vite-ignore */ `/public/${icon}.svg?raw`
-);
+const { default: originalSvg } = await import(`/src/assets/${icon}.svg?raw`);
 
 // const innerHTML = addAttributesToInnerHTMLString(svg, attributes);
 const root = parse(originalSvg);
