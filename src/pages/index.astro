@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { posts } from "../content/posts";
-import { Image } from "astro:assets";
+import placeholder from "../assets/placeholder_1.jpg";
 
 const base = import.meta.env.BASE_URL!;
 ---
@@ -49,10 +49,7 @@ const base = import.meta.env.BASE_URL!;
 						<a href={`/posts/${post.slug}`} class="block">
 							<div class="overflow-hidden rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
 								<img
-									src={
-										post.imageUrl ||
-										"/src/assets/placeholder_1.jpg"
-									}
+									src={post.imageUrl || placeholder.src}
 									alt={post.title}
 									class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
 								/>
