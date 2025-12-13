@@ -1,16 +1,18 @@
 ---
 import ThemeToggler from "./ThemeToggler.astro";
 import HeaderLink from "./HeaderLink.astro";
+
+const base = import.meta.env.BASE_URL!;
 ---
 
 <header class="sticky top-0 z-50 theme-header backdrop-blur-sm border-b">
     <nav class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-            <HeaderLink> Fabio O. Costa </HeaderLink>
+            <HeaderLink href={`${base}/`}> Fabio O. Costa </HeaderLink>
             <div class="flex items-center gap-6">
-                <HeaderLink href="/"> Home </HeaderLink>
-                <HeaderLink href="/about"> About </HeaderLink>
-                <HeaderLink href="/cv"> CV </HeaderLink>
+                <HeaderLink href={`${base}/`}> Home </HeaderLink>
+                <HeaderLink href={`${base}/about`}> About </HeaderLink>
+                <HeaderLink href={`${base}/cv`}> CV </HeaderLink>
                 <ThemeToggler />
             </div>
         </div>
