@@ -8,9 +8,9 @@ const base = import.meta.env.BASE_URL!;
 
 const pathname = Astro.url.pathname
     .replace(import.meta.env.BASE_URL, "")
-    .replace(/$\\/, "");
+    .replace(/^\/+|\/+$/g, "");
 const subpath = pathname.match(/[^\/]+/g);
-const sanitizedHref = `${href}`.replace(base, "").replace(/$\\/, "");
+const sanitizedHref = `${href}`.replace(base, "").replace(/^\/+|\/+$/g, "");
 
 const isActive =
     sanitizedHref === pathname || href === "/" + (subpath?.[0] || "");
@@ -30,6 +30,7 @@ const defaultClasses: any = [
     href={href}
     class:list={defaultClasses.concat([className, { active: isActive }])}
     {...props}
+    data-debug={`${sanitizedHref} ${pathname}`}
 >
     <slot />
 </a>
